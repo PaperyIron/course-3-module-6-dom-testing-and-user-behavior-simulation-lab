@@ -1,15 +1,44 @@
-// Step 1: Simulate User Behavior
-// - Add event listeners for button clicks and form submissions.
-// - Use JavaScript to dynamically update the DOM based on user actions.
+//simulate a user button click
+function simulateClick(id, phrase) {
+    document.getElementById(id).innerHTML = phrase;
+};
 
-// Step 2: DOM Manipulation Functions
-// - Implement functions to add, update, and remove DOM elements.
-// - Ensure all elements are dynamically created with appropriate attributes and content.
+//handle form submit
+function handleFormSubmit(formId, targetElementId) {
+    const form = document.getElementById(formId);
+    const input = document.getElementById('user-input');
+    const dynamicContent = document.getElementById(targetElementId);
+    const errorMessage = document.getElementById('error-message');
 
-// Step 3: Error Handling
-// - Display error messages in the DOM for invalid inputs or missing elements.
-// - Create reusable functions to handle common error cases.
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-// Step 4: Reusable Utilities
-// - Create modular utility functions, such as createElement(tag, attributes).
-// - Ensure all functions follow DRY principles for maintainability.
+        if (!input.value) {//make sure input has a value or throw an error
+            errorMessage.textContent = 'Input cannot be empty';
+            errorMessage.classList.remove('hidden');
+        } else { //else submit the form
+            dynamicContent.textContent = input.value;
+            errorMessage.classList.add('hidden');
+        }
+    });
+
+    // Trigger submit for testing
+    form.dispatchEvent(new Event('submit'));
+}
+//add and element to the dom
+function addElementToDOM(id, phrase) {
+    const dynamicContent = document.getElementById(id);
+    dynamicContent.textContent = phrase;
+};
+
+//remove element from dom
+function removeElementFromDOM(element) {
+    document.getElementById(element).remove();
+}
+
+module.exports = {
+    addElementToDOM,
+    removeElementFromDOM,
+    simulateClick,
+    handleFormSubmit,
+};

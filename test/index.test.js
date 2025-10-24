@@ -7,7 +7,7 @@ const {
   removeElementFromDOM,
   simulateClick,
   handleFormSubmit,
-} = require('../index')
+} = require('../index.js')
 
 describe('DOM Testing and User Behavior Simulation', () => {
   beforeEach(() => {
